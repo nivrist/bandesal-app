@@ -1,0 +1,72 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+
+    <ui:define name="content">
+        <div class="p-grid"> 
+            <div class="p-col-12">
+                <p:growl id="message"/>
+                <h:form id="formBancos">
+                    <div class="card">
+                        <div class="ui-fluid p-formgrid p-grid">
+
+
+                            <div class="p-field p-col-12 p-md-5">
+                                <p:outputLabel value="Name" for="readers_name" />
+                                <p:inputText maxlength="8" autocomplete="off" value="#{loginSecurity.readers_name}" id="readers_name"  class="form-control-plaintext"  placeholder="Name"  />
+                            </div>
+                            
+
+                            <div class="p-field p-col-12 p-md-12"></div>
+                            <div class="p-field p-col-12 p-md-2">
+                                <p:commandButton icon="#{msg['form.generic.icon.save']}" iconPos="#{msg['form.generic.icon.pos']}" update="@form :formTbl:tblbancos message"  action="#{loginSecurity.saveReaders()}"   value="#{msg['form.button.generic.save']}" />
+                            </div>
+                            <div class="p-field p-col-12 p-md-2">
+                                <p:commandButton icon="#{msg['form.generic.icon.clear']}" iconPos="#{msg['form.generic.icon.pos']}" update="@form :formTbl:tblbancos message"  action="#{loginSecurity.clearReaders()}"   value="#{msg['form.button.generic.clean']}" />
+                            </div>
+                            
+                             <div class="p-field p-col-12 p-md-2">
+                                 <p:commandButton icon="#{msg['form.generic.icon.delete']}" update="@form :formTbl:tblbancos message" action="#{loginSecurity.eliminarReaders()}" iconPos="#{msg['form.generic.icon.pos']}"    value="Eliminar" />
+                            </div>
+                        </div>
+                    </div>
+                </h:form>   
+                <h:form id="formTbl">
+                    <div class="card">
+                        <div class="ui-fluid p-formgrid p-grid">
+
+                            <p:dataTable id="tblbancos" var="bk" value="#{loginSecurity.responseServicesDataReaders.dataDetailAsList}" 
+                                         reflow="true"
+                                         selectionMode="single"
+                                         selection="#{loginSecurity.selectionReaders}"
+                                         styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                         paginatorPosition="bottom"
+                                         rowsPerPageTemplate="5,10,15"
+                                         rowKey="#{bk.id}" paginator="true" rows="5">
+                                
+                                <p:ajax event="rowSelect" listener="#{loginSecurity.loadReadersTable()}" update=":formBancos"/>
+
+                               
+                                
+                                <p:column width="50" style="font-weight: bold;text-align:center"  headerText="Id" >                                    
+                                    <h:outputText style="font-weight: normal"  styleClass="wrap" value="#{bk.id}" />                                   
+                                </p:column>  
+
+                                <p:column style="font-weight: bold;text-align:center"   headerText="Name" >
+                                    <h:outputText style="font-weight: normal" value="#{bk.name}" />
+                                </p:column>
+                                
+                            </p:dataTable>
+
+                        </div>
+                    </div>
+                </h:form>
+
+            </div>
+        </div>
+    </ui:define>
+
+</ui:composition>

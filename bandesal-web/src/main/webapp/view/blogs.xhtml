@@ -1,0 +1,75 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <div class="p-grid"> 
+            <div class="p-col-12">
+                <p:growl id="message"/>
+                <h:form id="formBlogs">
+                    <div class="card">
+                        <div class="ui-fluid p-formgrid p-grid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <p:outputLabel value="Title"  />
+                                <p:inputText maxlength="50" value="#{loginSecurity.title}"  />
+                            </div>
+                            <div class="p-field p-col-12 p-md-7"></div>
+                            <div class="p-field p-col-12 p-md-5">
+                                <p:outputLabel value="Description"  />
+                                <p:inputTextarea maxlength="4000" value="#{loginSecurity.description}" />
+                            </div>
+                            <div class="p-field p-col-12 p-md-12"></div>
+                            <div class="p-field p-col-12 p-md-2">
+                                <p:commandButton icon="#{msg['form.generic.icon.save']}" update="@form :formTblBlogs:tblBlogs message" action="#{loginSecurity.saveBlogs()}" iconPos="#{msg['form.generic.icon.pos']}"    value="#{msg['form.button.generic.save']}" />
+                            </div>
+                            <div class="p-field p-col-12 p-md-2">
+                                <p:commandButton icon="#{msg['form.generic.icon.clear']}" update="@form :formTblBlogs:tblBlogs message" action="#{loginSecurity.clearBlogs()}" iconPos="#{msg['form.generic.icon.pos']}"    value="#{msg['form.button.generic.clean']}" />
+                            </div>
+                            
+                             <div class="p-field p-col-12 p-md-2">
+                                 <p:commandButton icon="#{msg['form.generic.icon.delete']}" update="@form :formTblBlogs:tblBlogs message" action="#{loginSecurity.eliminarBlog()}" iconPos="#{msg['form.generic.icon.pos']}"    value="Eliminar" />
+                            </div>
+
+                        </div>
+                    </div>
+                </h:form>
+                <h:form id="formTblBlogs">
+                    <div class="card">
+                        <div class="ui-fluid p-formgrid p-grid">
+
+                            <p:dataTable id="tblBlogs" var="bk" value="#{loginSecurity.responseServicesDataBlogs.dataDetailAsList}" 
+                                         reflow="true"
+                                         selectionMode="single"
+                                         selection="#{loginSecurity.selectionBlogs}"
+                                         styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                         paginatorPosition="bottom"
+                                         rowsPerPageTemplate="5,10,15"
+                                         rowKey="#{bk.id}" paginator="true" rows="5">
+                                
+                                <p:ajax event="rowSelect" listener="#{loginSecurity.loadBlogsTable()}" update=":formBlogs"/>
+
+                               
+                                
+                                <p:column width="50" style="font-weight: bold;text-align:center"  headerText="Id" >                                    
+                                    <h:outputText style="font-weight: normal"  styleClass="wrap" value="#{bk.id}" />                                   
+                                </p:column>  
+
+                                <p:column style="font-weight: bold;text-align:center"   headerText="Title" >
+                                    <h:outputText style="font-weight: normal" value="#{bk.title}" />
+                                </p:column>
+                                
+                                 <p:column style="font-weight: bold;text-align:center"   headerText="Description" >
+                                     <h:outputText style="font-weight: normal" value="#{bk.description}" />
+                                </p:column>
+                                
+                            </p:dataTable>
+
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>

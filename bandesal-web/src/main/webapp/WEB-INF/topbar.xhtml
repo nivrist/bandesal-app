@@ -1,0 +1,57 @@
+<ui:composition 
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pu="http://primefaces.org/avalon">
+    <div class="topbar clearfix">
+        <div class="topbar-left">            
+            <p:graphicImage rendered="true"  name="images/BandesalFooterAlt.png" library="avalon-layout" styleClass="topbar-logo"/>
+        </div>
+        <style>
+         /* Estilos del contenedor */
+
+
+
+/* Tamaño del scroll */
+::-webkit-scrollbar {
+  width: 3px;
+}
+
+ /* Estilos barra (thumb) de scroll */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+
+::-webkit-scrollbar-track:hover, 
+::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+
+        </style>
+
+        <div class="topbar-right">
+            <a id="menu-button" href="#">
+                <i class="fa fa-angle-left"></i>
+            </a>
+
+            <a id="topbar-menu-button" href="#">
+                <i class="fa fa-bars"></i>
+            </a>            
+    </div>
+
+</div>
+
+</ui:composition>

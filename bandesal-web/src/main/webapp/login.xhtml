@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <f:facet name="first">
+            <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+            <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0"/>
+            <meta name="apple-mobile-web-app-capable" content="yes" />
+            <link rel="apple-touch-icon" sizes="180x180" href="#{request.contextPath}/resources/avalon-layout/images/favicon/apple-touch-icon.png"/>
+            <link rel="icon" type="image/png" sizes="32x32" href="#{request.contextPath}/resources/avalon-layout/images/favicon/favicon-32x32.png"/>
+            <link rel="icon" type="image/png" sizes="16x16" href="#{request.contextPath}/resources/avalon-layout/images/favicon/favicon-16x16.png"/>
+            <link rel="manifest" href="#{request.contextPath}/resources/avalon-layout/images/favicon/site.webmanifest"/>
+            <link rel="mask-icon" href="#{request.contextPath}/resources/avalon-layout/images/favicon/safari-pinned-tab.svg" color="#5bbad5"/>
+            <meta name="msapplication-TileColor" content="#da532c"/>
+            <meta name="theme-color" content="#ffffff"/>
+        </f:facet>
+        <title>BANDESAL</title>
+        <h:outputScript name="js/layout.js" library="avalon-layout" />
+        
+    </h:head>
+
+    <h:body styleClass="login-body">
+        <div class="login-image">
+            <center>
+                <p:graphicImage width="175" name="css/LogoBANDESAL_.png" library="avalon-layout" />
+              </center>
+        </div>
+        <div class="card login-panel ui-fluid">
+            <div class="login-panel-content">
+                <h:form id="form_login">
+                    <p:growl/>
+                    <div class="ui-g">
+                        <div class="ui-g-12 ui-sm-6 ui-md-6" style="text-align:left;">
+                            <p:graphicImage name="images/login/icon-login.svg" library="avalon-layout" />
+                        </div>
+                        <div class="ui-g-12 ui-sm-6 ui-md-6" style="text-align:right;">
+                      
+                        </div>
+                        <div class="ui-g-12" style="text-align:left;">
+                            <h:panelGroup>
+                                <label class="login-label">Usuario</label>
+                                <div class="login-input">
+                                    <span class="ui-input-icon-left">
+                                         <i class="pi pi-user"></i>
+                                    <p:inputText autocomplete="off" id="j_username" value="#{loginSecurity.formUser}" />
+                                    </span>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+                        <div class="p-col-12" style="text-align:left;">
+                            <h:panelGroup>
+                                <label class="login-label">Contraseña</label>
+                                <div class="login-input">
+                                    <span class="ui-input-icon-left">
+                                        <i class="pi pi-lock"></i>
+                                    <p:password autocomplete="off" id="j_password" value="#{loginSecurity.formPassword}" />
+                                     </span>
+                                </div>
+                            </h:panelGroup>
+                        </div>
+                        <div class="p-col-12 p-md-6 button-pane">
+                            <p:commandButton value="#{msg['loginform.btn.ingresar']}" ajax="false" actionListener="#{loginSecurity.ingresar()}" />
+                        </div>
+
+                        <div class="p-col-12 p-md-6 p-d-flex p-ai-center p-jc-center">
+                            <p:link rendered="false" styleClass="forget-password">Olvido Contraseña?</p:link>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+        <h:outputStylesheet name="css/primeflex.min.css" library="avalon-layout" />
+        <h:outputStylesheet name="css/layout-lightblue.css" library="avalon-layout" />
+    </h:body>
+
+</html>

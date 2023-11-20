@@ -1,0 +1,30 @@
+<ui:composition
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:f="http://java.sun.com/jsf/core"
+    xmlns:h="http://java.sun.com/jsf/html"
+    xmlns:ui="http://java.sun.com/jsf/facelets"
+    xmlns:p="http://primefaces.org/ui"
+    xmlns:pu="http://primefaces.org/avalon">
+
+    <h:form id="menuform">
+        <div class="layout-menu-container #{guestPreferences.menuClass}">
+            <div class="menu-scroll-content">
+
+
+                <pu:menu widgetVar="me" styleClass="layout-main-menu">
+                    <p:submenu id="om_homepage" label="" icon="pi pi-fw pi-bars">
+                        <p:submenu id="om_dashboards" icon="pi pi-fw pi-bars" label="Menu">
+                            <p:menuitem id="om_dashboard" value="Readers" icon="pi pi-fw pi-users" outcome="/view/readers" />
+                            <p:menuitem id="om_dashboard_banking" value="Blogs" icon="pi pi-fw pi-id-card" outcome="/view/blogs" />
+                            <p:menuitem id="spCharcaters" value="Blog readers" icon="pi pi-fw pi-user" outcome="/view/readers_blog"  />                            
+                        </p:submenu>                        
+                    </p:submenu>
+                    <p:menuitem id="om_buy" value="Cerrar sesión" ajax="false" icon="pi pi-fw pi-sign-out" actionListener="#{loginSecurity.logOut()}" />
+
+
+                </pu:menu>
+                
+            </div>
+        </div>
+    </h:form>
+</ui:composition>

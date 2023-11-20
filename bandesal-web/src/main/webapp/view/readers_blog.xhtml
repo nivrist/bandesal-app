@@ -1,0 +1,86 @@
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:p="http://primefaces.org/ui"
+                template="/WEB-INF/template.xhtml">
+    <ui:define name="content">
+        <div class="p-grid"> 
+            <div class="p-col-12">
+                <p:growl id="message"/>
+                <h:form id="formBlogsReaders">
+                    <div class="card">
+                        <div class="ui-fluid p-formgrid p-grid">
+                            <div class="p-field p-col-12 p-md-5">
+                                <p:outputLabel value="Readers" for="cmbreaders" />
+                                <p:selectOneMenu id="cmbreaders" value="#{loginSecurity.selectedIdReaders}" style="margin-bottom:10px;">                               
+                                    <f:selectItem itemLabel="#{msg['form.button.generic.seleccion']}" itemValue="0" />
+                                    <f:selectItems value="#{loginSecurity.listaReaders}" />
+                                </p:selectOneMenu>
+                            </div>
+                            
+                            <div class="p-field p-col-12 p-md-5">
+                                <p:outputLabel value="Blogs" for="cmbBlogs" />
+                                <p:selectOneMenu id="cmbBlogs" value="#{loginSecurity.selectedIdBlog}" style="margin-bottom:10px;">                               
+                                    <f:selectItem itemLabel="#{msg['form.button.generic.seleccion']}" itemValue="0" />
+                                    <f:selectItems value="#{loginSecurity.listaBlogs}" />
+                                    <p:ajax listener="#{loginSecurity.loadDescriptionBlogById()}" update="brdescription"/>
+                                </p:selectOneMenu>
+                            </div>
+                            <div class="p-field p-col-12 p-md-5">
+                                <p:outputLabel value="Blog description"  />
+                                <p:inputTextarea maxlength="4000" readonly="true" id="brdescription" value="#{loginSecurity.descriptionBySelection}" />
+                            </div>
+                            <div class="p-field p-col-12 p-md-7"></div>
+                            <div class="p-field p-col-12 p-md-2">
+                                <p:commandButton icon="#{msg['form.generic.icon.save']}" update="@form :formTblBlogsReaders:tblBlogsReaders message" action="#{loginSecurity.saveBlogsReaders()}" iconPos="#{msg['form.generic.icon.pos']}"    value="#{msg['form.button.generic.save']}" />
+                            </div>
+                            <div class="p-field p-col-12 p-md-2">
+                                <p:commandButton icon="#{msg['form.generic.icon.clear']}" update="@form :formTblBlogsReaders:tblBlogsReaders message" action="#{loginSecurity.clearBlogsReaders()}" iconPos="#{msg['form.generic.icon.pos']}"    value="#{msg['form.button.generic.clean']}" />
+                            </div>
+                            
+                             <div class="p-field p-col-12 p-md-2">
+                                 <p:commandButton icon="#{msg['form.generic.icon.delete']}" update="@form :formTblBlogsReaders:tblBlogsReaders message" action="#{loginSecurity.eliminarBlogReaders()}" iconPos="#{msg['form.generic.icon.pos']}"    value="Eliminar" />
+                            </div>
+
+                        </div>
+                    </div>
+                </h:form>
+                
+                <h:form id="formTblBlogsReaders">
+                    <div class="card">
+                        <div class="ui-fluid p-formgrid p-grid">
+
+                            <p:dataTable id="tblBlogsReaders" var="bk" value="#{loginSecurity.responseServicesDataBlogsReaders.dataDetailAsList}" 
+                                         reflow="true"
+                                         selectionMode="single"
+                                         selection="#{loginSecurity.selectionBlogsReaders}"
+                                         styleClass="ui-datatable-striped ui-datatable-sm ui-datatable-gridlines"
+                                         paginatorPosition="bottom"
+                                         rowsPerPageTemplate="5,10,15"
+                                         rowKey="#{bk.id}" paginator="true" rows="5">
+                                
+                                <p:ajax event="rowSelect" listener="#{loginSecurity.loadBlogsReadersTable()}" update=":formBlogsReaders"/>
+                               
+                                
+                                <p:column width="50" style="font-weight: bold;text-align:center"  headerText="Name" >                                    
+                                    <h:outputText style="font-weight: normal"  styleClass="wrap" value="#{bk.name}" />                                   
+                                </p:column>  
+
+                                <p:column style="font-weight: bold;text-align:center"   headerText="Title" >
+                                    <h:outputText style="font-weight: normal" value="#{bk.title}" />
+                                </p:column>
+                                
+                                 <p:column style="font-weight: bold;text-align:center"   headerText="Description" >
+                                     <h:outputText style="font-weight: normal" value="#{bk.description}" />
+                                </p:column>
+                                
+                            </p:dataTable>
+
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </div>
+    </ui:define>
+</ui:composition>
