@@ -31,19 +31,21 @@ El proyecto **Web** es una aplicación web construida sobre **JSF (JavaServer Fa
 - **Maven**
 
 ### Acceso a la Aplicación Web
-**Usuario:** bandesal
-**Contraseña:** 123
+- **Usuario:** bandesal
+- **Contraseña:** 123
 
 #### Autenticación para Servicios REST
-**Usuario:** admin
-**Contraseña:** admin
+- **Usuario:** admin
+- **Contraseña:** admin
 
 ### Script base de Datos 
-**bandesalschema.sql**
+- **bandesalschema.sql**
 
 ### Data Sources Creado
-**jdbc/bandesaldb**
+- **jdbc/bandesaldb**
 
 ### Template Utilizado
-***avalon-theme*** 
-***avalon-theme-4.1.0.jar***
+- ***avalon-theme*** 
+- ***avalon-theme-4.1.0.jar***
+### Collecion Postamn
+- ***Bandesal-Api.postman_collection.json*** 
