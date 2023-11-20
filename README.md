@@ -47,5 +47,5 @@ El proyecto **Web** es una aplicación web construida sobre **JSF (JavaServer Fa
 ### Template Utilizado
 - ***avalon-theme*** 
 - ***avalon-theme-4.1.0.jar***
-### Collection Postamn
+### Collection Postman
 - ***Bandesal-Api.postman_collection.json*** 
